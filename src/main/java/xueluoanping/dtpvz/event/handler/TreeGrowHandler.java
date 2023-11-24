@@ -38,8 +38,9 @@ public class TreeGrowHandler {
             final boolean isBlocked = ! event.getWorld().isEmptyBlock(event.getPos().above());
             if(PVZConfig.COMMON_CONFIG.RuleSettings.AllowNaturalTurnOrigin.get() || isBlocked) {
                 final double chance = PVZConfig.COMMON_CONFIG.BlockSettings.SaplingTurnChance.get();
-                if(MathUtil.randDouble(event.getWorld().getRandom(), isBlocked ? chance * 1.2 : chance) && event.getPos().getY() > 2) {
-                    event.getWorld().setBlock(event.getPos().below(),BlockRegister.ORIGIN_ORE.get().defaultBlockState(), Constants.BlockFlags.BLOCK_UPDATE);
+                if(MathUtil.randDouble(event.getWorld().getRandom(), isBlocked ? chance * 1.2 : chance) && event.getPos().getY() > 2)
+                {
+                    event.getWorld().setBlock(event.getPos().below(),BlockRegister.ORIGIN_ORE.get().defaultBlockState(), Constants.BlockFlags.BLOCK_UPDATE|Constants.BlockFlags.NOTIFY_NEIGHBORS);
                 }
             }
         }
